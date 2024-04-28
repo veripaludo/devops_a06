@@ -1,0 +1,14 @@
+language: node.js
+node.js:
+  - 11.6.0
+cache: npm
+
+install:
+ - npm install
+
+ script:
+ - docker pull michelleamesquita/cucumber-bdd-ci
+ - docker run -v $PWD/:/app/report/michelleamesquita/cucumber-bdd-ci
+
+ after-script:
+ - bash ./telegram_notification.sh
